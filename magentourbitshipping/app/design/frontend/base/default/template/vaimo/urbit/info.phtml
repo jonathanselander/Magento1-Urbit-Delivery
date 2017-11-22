@@ -1,0 +1,10 @@
+<?php
+$available = Mage::helper("vaimo_urbit/data")->isAvailableForOneHourDelivery();
+if ($available) {
+    ?>
+    <div id="urbit_info">
+        <img src="<?php echo $this->getSkinUrl('images/vaimo/urbit/urb-it_20px.png'); ?>"/>
+
+        <p> <?php echo Mage::helper("vaimo_urbit")->__("Get your item at the time of your choice with urb-it, <a href='%s'>Read more</a>", Mage::getBaseUrl() . "urb-it"); ?></p>
+    </div>
+<?php } ?>

@@ -1,0 +1,20 @@
+{
+    "name": "vaimo/urbit",
+    "type": "magento-module",
+    "description": "Vaimo_Urbit",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Erik Rydén",
+            "email": "erik.ryden@icommerce.se"
+        }
+    ],
+    "require": {
+        "vaimo/magento": "*",  
+        "magento-hackathon/magento-composer-installer": "*" 
+        
+    },
+    "extra": {
+        "vaimo-module-category": "shipping"
+    }
+}

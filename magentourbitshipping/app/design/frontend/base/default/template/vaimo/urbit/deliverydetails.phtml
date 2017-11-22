@@ -1,0 +1,101 @@
+<?php
+
+$code = $this->getRateCode();
+
+$session = Mage::getSingleton('checkout/session');
+
+$deliveryPostcode = $session->getData('shipping_postcode', '');
+$deliveryDay = $session->getData('shipping_day', '');
+$deliveryHour = $session->getData('shipping_hour', '');
+$deliveryMinute = $session->getData('shipping_minute', '');
+$deliveryTelephone = $session->getData('shipping_telephone', '');
+
+
+?>
+
+<ul class="form-list" id="shipping_form_<?php echo $code ?>">
+    <li>
+
+        <?php if($code == "urbit_onehour_urbit_specific"): ?>
+
+            <div class="specific input-box" style="clear:both;">
+                <?php echo $this->__('Day:'); ?>
+                <select class="require-empty-validation" id="<?php echo $code ?>_day" name="shipping_delivery[day]"
+                        onchange="urbit.validateOpenHours();">
+                    <?php foreach ($this->getDayList($this->getOpeningHours()) as $date): ?>
+                        <option value="<?php echo $date['date']; ?>"
+                                <?php if ($date['date'] == $deliveryDay): ?>selected<?php endif; ?>><?php echo $date['label'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="specific input-box">
+                <?php echo $this->__('Hour:'); ?>
+                <select class="require-empty-validation" name="shipping_delivery[hour]"
+                        onchange="urbit.validateOpenHours();">
+                    <option value='' <?php if ($deliveryHour == '') {
+                        echo "selected=selected";
+                    } ?>><?php echo $this->__('Hour'); ?></option>
+                    <?php
+                    for ($i = 0; $i < 24; $i++) {
+                        $hour = $i < 10 ? "0" . $i : $i;
+                        ?>
+                        <option value='<?php echo $hour ?>'
+                        <?php if ($hour == $deliveryHour) { ?>selected<?php } ?>><?php echo $hour ?></option><?php
+                    }
+                    ?>
+                </select> :
+                <select class="require-empty-validation" name="shipping_delivery[minute]">
+                    <option value='' <?php if ($deliveryMinute == '') {
+                        echo "selected=selected";
+                    } ?>><?php echo $this->__('Minute'); ?></option>
+                    <?php
+                    for ($i = 0; $i < 60; $i++) {
+                        if ($i % 15 == 0) {
+                            $minute = $i < 10 ? "0" . $i : $i;
+                        ?>
+                        <option value='<?php echo $minute ?>'
+                                <?php if ($minute == $deliveryMinute) { ?>selected<?php } ?>><?php echo $minute ?></option>
+                    <?php
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
+
+        <?php endif; ?>
+
+        <input type="hidden" id="<?php echo $code ?>_postcode" class="urbit_postcode" name="shipping_delivery[postcode]" value="<?php echo $deliveryPostcode; ?>" />
+        <input type='hidden' id="<?php echo $code ?>_telephone" class="urbit_telephone" name='shipping_delivery[telephone]' value='<?php echo $deliveryTelephone ?>'/>
+
+    </li>
+</ul>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    if(typeof(urbit) !== undefined) {
+        var openhours = [];
+        <?php $openhours = $this->getOpeningHours(); ?>
+        <?php foreach($openhours as $key => $value):?>
+        openhours.push({
+            date: '<?php echo $key; ?>',
+            from: '<?php echo isset($value["from"]) ? $value["from"] : false; ?>',
+            to: '<?php echo isset($value["to"]) ? $value["to"] : false; ?>'
+        });
+        <?php endforeach; ?>
+
+        urbit = new Urbit();
+        urbit.init(openhours);
+        urbit.addValidation();
+        urbit.validateOpenHours();
+    }
+
+    jQuery(document).ready(function(){
+        jQuery( document ).on( 'focus', ':input', function(){
+            jQuery( this ).attr( 'autocomplete', 'off' );
+        });
+    });
+    /*]]>*/
+</script>
+
+

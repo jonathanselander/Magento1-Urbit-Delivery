@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Vaimo_UrbIt>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Vaimo_UrbIt>
+    </modules>
+</config>

@@ -1,0 +1,25 @@
+<script>
+    function validatePostcode() {
+        jQuery(".urbit-submit").val("vänta!");
+        var postcode = jQuery('input[name="postal_code"]').val();
+        jQuery(".urb-it-validator .success").hide();
+        jQuery(".urb-it-validator .failed").hide();
+        jQuery.get("<?php echo Mage::getUrl("urbit/postcode/validate")?>?postcode=" + postcode, function (data, status) {
+            if(data == true){
+                jQuery(".urb-it-validator .success").show();
+            }else{
+                jQuery(".urb-it-validator .failed").show();
+            }
+            jQuery(".urbit-submit").val("Testa postnummer");
+        });
+    }
+</script>
+<div class="urb-it-validator">
+    <div>
+        <p class="title">Se om du kan handla med urb-it</p>
+        <input name="postal_code" class="urbit-postcode" placeholder="Postnummer" type="text">
+        <input type="button" class="urbit-submit button" value="Testa postnummer" onclick="validatePostcode(); return false;">
+        <p class="message success" style="display: none;">Du kan handla med urb-it!</p>
+        <p class="message failed" style="display: none;">Just nu kan du inte handla med urb-it på det postnumret. Kolla nytt postnummer</p>
+    </div>
+</div>
