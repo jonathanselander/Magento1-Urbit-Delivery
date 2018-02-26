@@ -1,0 +1,95 @@
+<?php
+
+$code = $this->getRateCode();
+
+?>
+<div class="urbit_address_error">Malformed address / Address outside the delivery area</div>
+<ul class="form-list" id="shipping_form_<?php echo $code ?>">
+    <li>
+        <div>
+            <?php echo $this->__('Delivery date:'); ?>
+            <select class="require-empty-validation urbit-delivery-selectbox" id="urbit_shipping_day"
+                    name="shipping_delivery[day]"">
+            </select>
+        </div>
+        <div id="urbit-specific-time-block">
+            <?php echo $this->__('Hour:'); ?>
+            <select class="urbit-time-validation urbit-delivery-selectbox" id="urbit_shipping_hour" name="shipping_delivery[hour]"">
+            </select> :
+            <select class="urbit-time-validation urbit-delivery-selectbox" id="urbit_shipping_minute" name="shipping_delivery[minute]">
+            </select>
+        </div>
+        <input type="hidden" id="ajax-validation-url"
+               value="<?= $this->getUrl('urbit/postcode/validatedeliveryaddress'); ?>">
+        <input type="hidden" id="ajax-delivery-days-url"
+               value="<?= $this->getUrl('urbit/date/dayoptions'); ?>">
+        <input type="hidden" id="ajax-delivery-hours-url"
+               value="<?= $this->getUrl('urbit/date/houroptions'); ?>">
+        <input type="hidden" id="ajax-delivery-minutes-url"
+               value="<?= $this->getUrl('urbit/date/minuteoptions'); ?>">
+        <div class="delivery-information">
+            <div class="urbit-delivery-input-wrapper">
+                <div> First Name:</div>
+                <input id="urbit_shipping_firstname" class="urbit-delivery-input require-empty-validation"
+                       name="shipping_delivery[firstname]"/>
+            </div>
+            <div class="urbit-delivery-input-wrapper">
+                <div> Last Name:</div>
+                <input id="urbit_shipping_lastname" class="urbit-delivery-input require-empty-validation"
+                       name="shipping_delivery[lastname]"/>
+            </div>
+            <div class="urbit-delivery-input-wrapper">
+                <div> Postcode:</div>
+                <input id="urbit_shipping_postcode"
+                       class="urbit-delivery-input address-validation require-empty-validation "
+                       name="shipping_delivery[postcode]"/>
+            </div>
+            <div class="urbit-delivery-input-wrapper">
+                <div>Address</div>
+                <input id="urbit_shipping_street"
+                       class="urbit-delivery-input address-validation require-empty-validation"
+                       name='shipping_delivery[street]'/>
+            </div>
+            <div class="urbit-delivery-input-wrapper">
+                <div>City</div>
+                <input id="urbit_shipping_city" class="urbit-delivery-input address-validation require-empty-validation"
+                       name='shipping_delivery[city]'/>
+            </div>
+            <div class="urbit-delivery-input-wrapper">
+                <div>Phone:</div>
+                <input id="urbit_shipping_telephone" class="urbit-delivery-input require-empty-validation"
+                       name='shipping_delivery[telephone]'/>
+            </div>
+            <div class="urbit-delivery-input-wrapper">
+                <div>E-mail:</div>
+                <input id="urbit_shipping_email" class="urbit-delivery-input require-empty-validation"
+                       name='shipping_delivery[email]'/>
+            </div>
+            <div class="urbit-delivery-input-wrapper">
+                <div>Message for urber:</div>
+                <textarea class="urbit-delivery-textarea" id="urbit_message_textarea"
+                          name="shipping_delivery[message]"></textarea>
+            </div>
+        </div>
+        <div class="hp_urbit_validation_error_message" id="hp_urbit_address_validation_error">
+            <p>Malformed address / Address outside the delivery area</p>
+        </div>
+    </li>
+</ul>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    if (typeof(urbit) !== undefined) {
+        urbit = new Urbit();
+        urbit.addValidation();
+    }
+
+    jQuery(document).ready(function () {
+        jQuery(document).on('focus', ':input', function () {
+            jQuery(this).attr('autocomplete', 'off');
+        });
+    });
+    /*]]>*/
+</script>
+
+

@@ -1,0 +1,169 @@
+#shipping_form_urbit_onehour_urbit_specific select option:disabled {
+    display:none;
+}
+
+#shipping_form_urbit_onehour_urbit_specific select option[disabled] {
+    display: none;
+}
+
+#shipping_form_urbit_onehour_urbit_specific select {
+    margin-right: 2px;
+    margin-top: 5px;
+    width: auto;
+}
+
+/* overrides */
+
+.sp-methods li label  {
+    margin-left:2px;
+    display:inline;
+}
+
+.sp-methods dd {
+    margin:0;
+}
+
+#urbit_success {
+    color: #000;
+    background-color: #fff;
+    margin: 7px;
+    height: 75px;
+    display: table;
+}
+
+#urbit_success .box {
+    padding: 0 10px;
+    display: table-cell;
+    width: auto;
+    vertical-align: top;
+}
+
+#urbit_success img {
+    margin: 5px;
+    width: 50px;
+    height: 75px;
+    display: table-cell;
+}
+
+#urbit_success h4 {
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+#urbit_success p {
+    font-weight:bold;
+}
+
+#urbit_info {
+    clear:both;
+    display: table;
+    margin-bottom: 5px;
+}
+
+#urbit_info img {
+    display: table-cell;
+    padding:5px;
+}
+
+#urbit_info p {
+    display: table-cell;
+    vertical-align: middle;
+    padding:5px;
+}
+
+#urbit_info a {
+    font-weight: bold;
+}
+
+.urb-it-validator {
+    clear:both;
+}
+
+.urb-it-validator .message {
+    clear:both;
+    font-weight: bold;
+    color: #fff;
+    padding:5px;
+}
+
+.urb-it-validator .success {
+    background-color:green;
+}
+.urb-it-validator .failed {
+    background-color:red;
+}
+
+.method ul li {
+    display:none;
+}
+
+.active-method ul li  {
+    display:block;
+}
+
+#advice-require-empty-validation-shipping_delivery[hour], #advice-require-empty-validation-shipping_delivery[minute] {
+    float:right;
+}
+
+.delivery-information {
+    margin-top:15px;
+}
+
+#urbit-specific-time-block {
+    display:none;
+}
+
+.urbit-delivery-input-wrapper {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.urbit-delivery-input {
+    height: 40px;
+    background-color: #F6F7F9;
+    border: none;
+    font-size: 15px;
+    padding: 10px;
+    width:100%;
+}
+
+.urbit-delivery-textarea {
+    max-height: 100px;
+    max-width: 100%;
+    min-height: 100px;
+    min-width: 100%;
+    background-color: #F6F7F9;
+    border: none;
+    font-size: 15px;
+    padding: 10px;
+}
+
+.urbit-delivery-selectbox {
+    height: 40px;
+    background-color: #F6F7F9;
+    border: none;
+    font-size: 15px;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#shipping_form_urbit_onehour_urbit_specific, #shipping_form_urbit_onehour_urbit_onehour {
+    border: 2px solid #2c2e2f;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    -webkit-animation: borderBlink 1s linear 5;
+    animation: borderBlink 1s linear 5;
+
+}
+
+#hp_urbit_address_validation_error {
+    display: none;
+    color:#F13340;
+    font-size: 16px;
+    padding:5px 0px;
+}
+
+

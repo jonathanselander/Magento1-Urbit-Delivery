@@ -1,0 +1,31 @@
+<?php
+
+$orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+$order = Mage::getModel('sales/order')->loadByIncrementId($orderId);
+$session = Mage::getSingleton('checkout/session');
+if (isset($order) && $order->getId() && ($order->getShippingMethod() == "urbit_onehour_urbit_onehour" || $order->getShippingMethod() == "urbit_onehour_urbit_specific")) {
+    $response = $session->getUrbitResponse();
+    ?>
+
+    <div id="urbit_success">
+        <img src="<?php echo $this->getSkinUrl('images/vaimo/urbit/urb-it_text_50px.png'); ?>" />
+        <div class="box">
+            <h4><?php echo $this->__("urb-it - delivery notice:"); ?></h4>
+
+            <p><?php echo $this->__("If a mobile number is registered on the order you will receive an SMS with all details of the delivery."); ?></p>
+        </div>
+    </div>
+
+<?php
+    //unset form fields
+    $session->unsetData('shipping_comment');
+    $session->unsetData('shipping_day');
+    $session->unsetData('shipping_hour');
+    $session->unsetData('shipping_minute');
+    $session->unsetData('shipping_telephone');
+    $session->unsetData('shipping_day');
+
+    //unset response
+    $session->unsUrbitResponse();
+}
+?>
