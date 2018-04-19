@@ -1,0 +1,11 @@
+{
+    "name": "urbitassociates/Magento1-Urbit-Delivery",
+    "type": "magento-module",
+    "description": "Urb-it Shipping module",
+    "authors": [
+        {
+            "name": "Urb-It",
+            "email":"support@urbit.com"
+        }
+    ]
+}
